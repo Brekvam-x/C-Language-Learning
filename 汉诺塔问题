@@ -1,0 +1,43 @@
+//分析：
+//（1）圆盘个数为1时，从A棒移动到C棒；
+//（2）圆盘个数大于等于2时，步骤可分为三个：
+//     第一步：将A棒上前n-1个圆盘移动至B棒；
+//     第二步：将A棒上第n个圆盘移动至C棒；
+//     第三步：将B棒上的n-1个圆盘移动至C棒；
+//其中，第一步和第三步又是移动多个圆盘的操作，可重复以上三个步骤，即构成递归过程
+#include <stdio.h>
+#include <math.h>
+
+//计算步数的函数
+int cmpSteps(int x)
+{
+	return pow(2, x) - 1;
+}
+
+//打印移动轨迹的函数
+void hanioMove(int n, char* a, char* b, char* c)//n为圆盘个数，a移动到c，b为临时棒
+{
+	if (n == 1)
+	{
+		printf("%s-->%s\n", a, c);
+	}
+	else
+	{
+		hanioMove(n-1, a, c, b);//第一步：将n-1个从a移动到b，c作临时棒
+		printf("%s-->%s\n", a, c);//第二步：将第n个从a移动到c
+		hanioMove(n-1, b, a, c);//第三步：将那n-1个从b移动到c，a作临时棒
+	}
+}
+
+//主函数
+int main()
+{
+	int n = 0;
+	int step = 0;
+	printf("请输入汉诺塔层数：");
+	scanf_s("%d", &n);
+	step = cmpSteps(n);
+	printf("%d层汉诺塔一共需要移动%d步\n其移动步骤如下：\n", n, step);
+	hanioMove(n, "A", "B", "C");
+	return 0;
+}
