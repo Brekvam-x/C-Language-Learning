@@ -1,0 +1,54 @@
+//编写一个函数，实现字符串逆序
+//用递归实现，不能使用c函数库中的字符串操作函数
+#include <stdio.h>
+
+int MyStrlen(char* str)
+{
+	int count = 0;
+	while (*str != '\0')
+	{
+		count++;
+		str++;
+	}
+	return count;
+}
+
+void RvrString(char str[])
+{
+	//int left = 0;
+	//int right = MyStrlen(str) - 1;
+	//循环
+	//char tmp = 0;
+	//while (left < right)
+	//{
+	//	tmp = str[left];
+	//	str[left] = str[right];
+	//	str[right] = tmp;
+	//	left++;
+	//	right--;
+	//}
+
+	//递归
+	int len = MyStrlen(str);
+	//分成四步：
+	//1. 把a拿出来放到一个临时变量中
+	char tmp = str[0];
+	//2. 把h放到最前
+	str[0] = str[len - 1];
+	//3. 把最后一位赋成\0，逆序sdfg
+	str[len-1] = '\0';
+	if (MyStrlen(str + 1) >= 2)
+	{
+		RvrString(str + 1);
+	}
+	//4. 把a放到最后
+	str[len - 1] = tmp;
+}
+
+int main()
+{
+	char str[] = "asdfgh";
+	RvrString(str);
+	printf("%s", str);
+	return 0;
+}
