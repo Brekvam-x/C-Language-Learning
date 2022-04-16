@@ -1,0 +1,50 @@
+//交换函数
+void Swap(int* a, int* b)
+{
+	int tmp = 0;
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
+
+//冒泡排序函数
+void bubbleSort(int arr[], int sz)
+{
+	int i = 0;
+	//趟数是sz-1
+	for (i = 0; i < sz - 1; i++)
+	{
+		int flag = 1; //假设本趟要排序的数据已经有序
+		//每一趟冒泡排序的过程
+		int j = 0;
+		//每一趟交换（sz-i-1）次
+		for (j = 0; j < sz - i - 1; j++)
+		{
+			if (arr[j] > arr[j + 1])  //相邻两个数进行比较，然后交换
+			{
+				Swap(&arr[j], &arr[j + 1]);//交换
+				flag = 0; //本趟排序的数据其实不完全有序
+			}
+		}
+		if (flag == 1)
+		{
+			break; //如果一趟下来flag都没有置0，说明没有发生交换，排序已经完成，结束循环
+		}
+	}
+}
+
+
+int main()
+{
+	int i = 0;
+	int arr[] = {10,9,8,7,6,5,4,3,2,1};
+	//排成升序
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	//对数组arr进行传参，为避免拷贝导致空间浪费，实际上传递过去的是arr首元素的地址 &arr[0]
+	bubbleSort(arr, sz); //冒泡排序函数
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
