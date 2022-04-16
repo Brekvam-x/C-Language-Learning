@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+int FindDiff(int x, int y)
+{
+    int z = x ^ y;
+    int count = 0;
+    while (z)
+    {
+        z = z & (z - 1);
+        count++;
+    }
+    return count;
+}
+
+int main()
+{
+    int m = 0;
+    int n = 0;
+    printf("请输入m = ");
+    scanf_s("%d", &m);
+    printf("\n");
+    printf("请输入n = ");
+    scanf_s("%d", &n);
+    printf("\n");
+    int count = FindDiff(m, n);
+    printf("%d和%d的二进制表达中，有%d个位不同\n", m, n, count);
+    return 0;
+}
