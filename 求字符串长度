@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int MyStrlen(char* str)
+{
+    char* start = str;
+    char* end = str;
+    while(*end != '\0')
+    {
+        end++;
+    }
+    return end - start;
+}
+
+int main()
+{
+    char arr[] = "hello";
+    int len = MyStrlen(arr);
+    printf("%d\n", len);
+    return 0;
+}
