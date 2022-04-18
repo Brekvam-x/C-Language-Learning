@@ -1,0 +1,34 @@
+typedef struct Stu  
+{
+    //成员变量
+    char name[20];
+    short age;
+    char gender[5];
+    char tel[11];
+}Stu;
+
+void Print1(Stu tmp)
+{
+    printf("name: %s\n", tmp.name);
+    printf("age: %d\n", tmp.age);
+    printf("gender: %s\n", tmp.gender);
+    printf("tel: %s\n", tmp.tel);
+}
+
+void Print2(Stu* ps)
+{
+    printf("name: %s\n", ps->name);
+    printf("age: %d\n", ps->age);
+    printf("gender: %s\n", ps->gender);
+    printf("tel: %s\n", ps->tel);
+}
+
+int main()
+{
+    Stu s = {"李四", 40, "男", "15991631198"};
+    //Print1和Print2哪个更好？
+    //Print2更好！Print1传参时会有一份临时拷贝，这既费时也费空间
+    Print1(s);
+    Print2(&s);
+    return 0;
+}
