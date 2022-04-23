@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <windows.h>
+
+int main()
+{
+    unsigned int i;
+    //无符号整数永远都是大于等于0，所以会一直循环
+    for (i = 9; i >= 0; i--)
+    {
+        printf("%u\n", i);
+        sleep(100); //休眠100ms
+    }
+    return 0;
+}
