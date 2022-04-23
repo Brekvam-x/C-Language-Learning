@@ -1,0 +1,8 @@
+#include <stdio.h>
+
+int main()
+{
+ char a = 128;//最大范围是127，128相当于是127+1  --> 结果也是-128
+ printf("%u\n", a); //2^32-2^7
+ return 0;
+}
