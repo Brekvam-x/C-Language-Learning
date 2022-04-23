@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char a[1000];
+    int i;
+    for (i = 0; i < 1000; i++)
+    {
+        a[i] = -1-i;
+    }
+    //a[0]=-1
+    //a[1]=-2
+    //...
+    //a[127]=-128
+    //a[128]=127
+    //a[129]=126
+    //a[255]=0    -  到这里0是'\0'的ASCII码值，所以strlen计算到下标254为止，结果是255
+    printf("%d", strlen(a));
+    return 0;
+}
