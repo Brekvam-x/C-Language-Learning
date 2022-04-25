@@ -1,0 +1,31 @@
+//基础用法：
+int main()
+{
+	char ch = 'w';
+	char* pc = &ch;
+	return 0;
+}
+
+//另外一种用法：
+int main()
+{
+	char arr[] = "abcdef";
+	//arr是首元素的地址
+	char* pc = arr;
+	printf("%s\n", arr); //abcdef
+	printf("%s\n", pc); //abcdef
+	
+	return 0;
+}
+
+//还有一种：
+int main()
+{
+	const char* p = "abcdef"; //"abcdef"时常量字符串
+	//printf("%c\n", *p); //a，其实和上面的道理一样的，取首元素地址赋给p
+	//printf("%s\n", p); //"abcdef"，从p的地址开始打印字符串
+	*p = 'W';
+	printf("%s\n", p);//Segment fault 段错误--非法访问内存
+	//"abcdef"时常量字符串，不能改变
+	return 0;
+}
