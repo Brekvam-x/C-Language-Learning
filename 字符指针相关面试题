@@ -1,0 +1,30 @@
+#include <stdio.h>
+int main()
+{
+	char arr1[] = "abcdef";
+	char arr2[] = "abcdef";
+	//两个常量字符串是一样的，为了节省空间，p1和p2指向的都是同一个常量字符串的首元素地址
+	const char* p1 = "abcdef";
+	const char* p2 = "abcdef";
+	
+	//haha
+	/*if (arr1 == arr2)
+	{
+		printf("hehe\n");
+	}
+	else
+	{
+		printf("haha\n");
+	}*/
+	
+	//hehe
+	if (p1 == p2)
+	{
+		printf("hehe\n");
+	}
+	else
+	{
+		printf("haha\n");
+	}
+	return 0;
+}
