@@ -1,0 +1,79 @@
+#include <stdio.h>
+
+void menu()
+{
+	printf("************************\n");
+	printf("*********1. ADD*********\n");
+	printf("*********2. SUB*********\n");
+	printf("*********3. MUL*********\n");
+	printf("*********4. DIV*********\n");
+	printf("*********0. EXIT********\n");
+	printf("************************\n");
+}
+
+int Add(int x, int y)
+{
+	return x + y;
+}
+
+int Sub(int x, int y)
+{
+	return x - y;
+}
+
+int Mul(int x, int y)
+{
+	return x * y;
+}
+
+int Div(int x, int y)
+{
+	return x / y;
+}
+
+void Calc(int (*pf)(int, int))
+{
+	//初始化操作数
+	int x = 0;
+	int y = 0;
+	printf("请输入两个操作数 --> ");
+	scanf_s("%d %d", &x, &y);
+	printf("结果为：%d\n"，pf(x, y));
+}
+
+int main()
+{
+	//初始化选择
+	int intput = 0;
+	//定义一个函数指针数组 - 转移表
+	int (*pfArr[])(int, int) = {0, Add, Sub, Mul, Div};
+	do
+	{
+		menu();
+		printf("请选择：");
+		scanf_s("%d", &input);
+		//这样避免代码冗余
+		switch (input)
+		{
+			case 1:
+				Calc(Add);
+				break;
+			case 2:
+				Calc(Sub);
+				break;
+			case 3:
+				Calc(Mul);
+				break;
+			case 4:
+				Calc(Div);
+				break;
+			case 0:
+				printf("退出\n");
+				break;
+			default:
+				printf("选择错误\n");
+				break;
+		}
+	}while(input);
+	return 0;
+}
