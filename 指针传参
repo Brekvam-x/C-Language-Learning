@@ -1,0 +1,37 @@
+//一级指针传参
+#include <stdio.h>
+
+void test1(int* p)
+{}
+
+void test2(char* p)
+{}
+
+int main()
+{
+	int a = 10;
+	int* p1 = &a
+	test1(&a); //ok,传地址
+	test1(p1); //ok
+	char ch = 'w';
+	char* pc = &ch;
+	test2(&ch);//ok
+	test2(pc);//ok
+	return 0;
+}
+
+
+//二级指针传参
+void test(int** ptr)
+{}
+
+int main()
+{
+	int* p;
+	int** pp = &p;
+	int* arr[10];
+	test(&p); //ok
+	test(pp); //ok
+	test(arr); //指针数组的首元素（一个指针）的地址，也就是二级指针
+	return 0;
+}
