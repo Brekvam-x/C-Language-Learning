@@ -1,0 +1,38 @@
+```c
+#include <stdio.h>
+
+int Add(int x, int y)
+{
+	return x + y;
+}
+
+int Sub(int x, int y)
+{
+	return x - y;
+}
+
+int Mul(int x, int y)
+{
+	return x * y;
+}
+
+int Div(int x, int y)
+{
+	return x / y;
+}
+
+int main()
+{
+	//指针数组
+	int* arr[5];
+	int (*pa)(int, int) = Add; //Sub, Mul, Div
+	//需要一个数组，这个数组可以存放4个函数的地址 - 函数指针数组
+	//parr[4]是一个数组，其类型为int(* )(int, int)
+	int (*parr[4])(int, int) = {Add, Sub, Mul, Div};
+	int i = 0;
+	for (i = 0; i < 4; i++)
+	{
+		printf("%d\n", parr[i](2, 3));
+	}
+	//5 -1 6 0
+}
