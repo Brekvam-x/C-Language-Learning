@@ -29,3 +29,26 @@ int main()
 	//这里的*pa就是指Add函数，(*pa)(2, 3) <==> Add(2, 3)
 	return 0;
 }
+
+
+//两段有趣的代码
+
+//代码1
+(*(void (*)())0)();
+//首先，void (*)()是一个函数指针，其类型是void ()
+//然后将这个函数指针括起来放在0的前面，意思是将0进行强制类型转换，转换成void (*)() 函数指针类型 - 现在0就是一个函数的地址
+//前面的*就是解引用操作，调用void (*)()这个函数指针的地址，即0地址处的该函数
+
+//代码2
+void (*signal(int , void(*)(int)))(int);
+//首先，signal(int, void(*)(int))是一个函数，有两个参数，分别为int类型和void(*)(int)类型，其中，void(*)(int)是一个函数指针，其类型为void (int)。函数的返回类型是void (*)(int) - 一个函数指针。
+//总而言之，这就是一个函数的声明语句，其中函数名是signal，函数的参数有两个，一个是int类型，另一个是函数指针，该函数指针指向的函数的参数是int，返回类型为void。signal函数返回值也是一个函数指针，该函数指针指向的函数的参数是int，返回类型为void。
+
+//代码2可以精简一些：
+//typedef的用法：
+typedef unsigned int u_int;
+
+//同理，可以将函数指针类型重命名为ptr_fun
+typedef void(* ptr_fun)(int); 
+//从而简化得到：
+prt_fun signal(int, ptr_fun);
