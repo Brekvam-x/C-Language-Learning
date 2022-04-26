@@ -1,0 +1,59 @@
+//一维数组传参
+#include <stdio.h>
+
+void test(int arr[])//ok? - ok
+{}
+
+void test(int arr[10])//ok? - ok - 10可以省略
+{}
+
+void test(int *arr)//ok? - ok
+{}
+
+void test2(int *arr[20])//ok? - ok - 20可以省略
+{}
+
+void test2(int **arr)//ok? - ok
+
+int main()
+{
+	int arr[10] = {0};
+	int *arr2[20] = {0};
+	test(arr);
+	test2(arr2);
+	return 0;
+}
+
+
+//二维数组传参
+#include <stdio.h>
+
+void test(int arr[3][5]) //ok
+{}
+
+void test1(int arr[][5]) //ok - 行可省略，列不能省
+{}
+
+//void test2(int arr[][]) //error - 列不可省略
+//{}
+
+//void test3(int *arr) //error
+//{}
+
+//void test4(int **arr) //error
+//{}
+
+void test5(int (*arr)[5]) //ok
+{}
+
+int main()
+{
+	int arr[3][5] = {0};
+	
+	//test(arr);//二维数组传参
+	//test1(arr);
+	//test3(arr);
+	//test4(arr);
+	test5(arr);
+	return 0;
+}
