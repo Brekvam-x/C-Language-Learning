@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int Add(int x, int y)
+{
+	int z = 0;
+	z = x + y;
+	return z;
+}
+
+int main()
+{
+	int a = 10;
+	int b = 20;
+	//printf("sum = %d\n", Add(a, b));
+	//printf("%p\n", &Add); //009110E1
+	//printf("%p\n", Add); //009110E1
+	int (*pa)(int, int) = Add;
+	//首先(*pa)表明是一个指针，其类型是int (int, int)
+	//其中，第一个int是指函数的返回值的类型是整型，括号里面的int表示函数的两个形参的类型是整型
+	//当然，也可以写int (int x, int y)，一般只写类型即可，x、y可以省略
+	printf("%d\n", (*pa)(2, 3)); //5
+	printf("%d\n", (**pa)(2, 3)); //5
+	printf("%d\n", (***pa)(2, 3)); //5
+	//说明对于函数来说，这些*不起作用，可以直接省略
+	//但是加上一个*比较容易理解
+	printf("%d\n", (pa)(2, 3)); //5
+	//可以这样理解：Add <==> pa，因此还可以这样写：
+	printf("%d\n", pa(2, 3)); //5
+	//这里的*pa就是指Add函数，(*pa)(2, 3) <==> Add(2, 3)
+	return 0;
+}
